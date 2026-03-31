@@ -1,0 +1,130 @@
+<!-- header.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lower Assam School of Nursing</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'primary-blue': '#1E40AF',
+            'light-blue': '#3B82F6',
+            'dark-blue': '#1E3A8A',
+            'sky-blue': '#0EA5E9',
+            'navy-blue': '#1E293B'
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Custom Styles -->
+  <style>
+    .hero-gradient {
+      background: linear-gradient(135deg, #1E40AF 0%, #3B82F6 50%, #0EA5E9 100%);
+    }
+    .card-hover {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .nslogo {
+      height: 80px;
+      width: 80px;
+    }
+    .card-hover:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    }
+    .dropdown:hover .dropdown-menu {
+      display: block;
+    }
+    .gradient-blue {
+      background: linear-gradient(135deg, #1E40AF, #3B82F6);
+    }
+  </style>
+</head>
+<body class="bg-gray-50 font-sans">
+
+  <!-- Top Announcement Bar -->
+  <div class="gradient-blue text-white py-2 px-4">
+    <div class="max-w-7xl mx-auto text-center">
+      <p class="text-sm font-medium">
+        🎓 Admissions Open for 2024-25 | Limited Seats Available | Apply Now! | Contact: +91-9876-543210
+      </p>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="bg-white shadow-lg sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-20">
+        <!-- Logo -->
+        <div class="flex items-center">
+          <a href="index.html" class="flex items-center">
+            <img src="assets/images/nslogo.png" alt="Logo" class="nslogo">
+            <div class="ml-2">
+              <h1 class="text-primary-blue font-bold text-lg">Lower Assam School of Nursing</h1>
+            </div>
+          </a>
+        </div>
+
+        <!-- Desktop Menu -->
+        <div class="hidden md:block">
+          <div class="ml-10 flex items-baseline space-x-4">
+            <a href="index.html#home" class="text-primary-blue hover:text-sky-blue px-3 py-2 rounded-md text-sm font-medium">Home</a>
+            <a href="index.html#courses" class="text-gray-700 hover:text-sky-blue px-3 py-2 rounded-md text-sm font-medium">Courses</a>
+            <div class="dropdown relative">
+              <a class="text-gray-700 hover:text-sky-blue px-3 py-2 rounded-md text-sm font-medium cursor-pointer">Facilities ▼</a>
+              <div class="dropdown-menu absolute hidden bg-white shadow-lg rounded-md mt-1 py-2 w-48 z-10">
+                <a href="index.html#labs" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-primary-blue">Laboratory</a>
+                <a href="index.html#library" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-primary-blue">Library</a>
+                <a href="index.html#clinical" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-primary-blue">Clinical Training</a>
+                <a href="index.html#hostel" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-primary-blue">Hostel</a>
+                <a href="index.html#cafeteria" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-primary-blue">Cafeteria</a>
+              </div>
+            </div>
+            <a href="index.html#gallery" class="text-gray-700 hover:text-sky-blue px-3 py-2 rounded-md text-sm font-medium">Gallery</a>
+            <a href="index.html#contact" class="text-gray-700 hover:text-sky-blue px-3 py-2 rounded-md text-sm font-medium">Contact</a>
+          </div>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <div class="md:hidden">
+          <button id="menu-btn" class="text-gray-700 focus:outline-none">
+            ☰
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white shadow-md">
+      <a href="index.html#home" class="block px-4 py-2 text-gray-700 hover:bg-blue-50">Home</a>
+      <a href="index.html#courses" class="block px-4 py-2 text-gray-700 hover:bg-blue-50">Courses</a>
+      <a href="index.html#labs" class="block px-4 py-2 text-gray-700 hover:bg-blue-50">Laboratory</a>
+      <a href="index.html#library" class="block px-4 py-2 text-gray-700 hover:bg-blue-50">Library</a>
+      <a href="index.html#clinical" class="block px-4 py-2 text-gray-700 hover:bg-blue-50">Clinical Training</a>
+      <a href="index.html#hostel" class="block px-4 py-2 text-gray-700 hover:bg-blue-50">Hostel</a>
+      <a href="index.html#cafeteria" class="block px-4 py-2 text-gray-700 hover:bg-blue-50">Cafeteria</a>
+      <a href="index.html#gallery" class="block px-4 py-2 text-gray-700 hover:bg-blue-50">Gallery</a>
+      <a href="index.html#contact" class="block px-4 py-2 text-gray-700 hover:bg-blue-50">Contact</a>
+    </div>
+  </nav>
+
+  <!-- JavaScript -->
+  <script>
+    // Mobile menu toggle
+    const menuBtn = document.getElementById("menu-btn");
+    const mobileMenu = document.getElementById("mobile-menu");
+
+    menuBtn.addEventListener("click", () => {
+      mobileMenu.classList.toggle("hidden");
+    });
+  </script>
+</body>
+</html>
