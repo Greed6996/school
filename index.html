@@ -71,9 +71,20 @@
     }
     .animate-scroll:hover { animation-play-state: paused; }
 
-    /* Slider styles */
-    .slide { opacity: 0; position: absolute; inset: 0; transition: opacity 1s ease-in-out; z-index: 0; }
-    .slide.active { opacity: 1; z-index: 10; }
+    /* Slider styles (4 Directional) */
+    .slide { 
+      position: absolute; 
+      inset: 0; 
+      visibility: hidden; 
+      z-index: 0; 
+      transition: transform 1.2s cubic-bezier(0.8, 0, 0.2, 1), visibility 0s;
+    }
+    .slide.active { visibility: visible; z-index: 10; transform: translate(0, 0); }
+    .slide.previous { visibility: visible; z-index: 5; transform: translate(0, 0); transition: none; }
+    .slide.from-left { transform: translateX(-100%); visibility: hidden; }
+    .slide.from-right { transform: translateX(100%); visibility: hidden; }
+    .slide.from-top { transform: translateY(-100%); visibility: hidden; }
+    .slide.from-bottom { transform: translateY(100%); visibility: hidden; }
 
     .btn-outline {
       border: 2px solid #0891B2;
@@ -295,20 +306,20 @@
 
           <!-- Central Card (Carousel ONLY) - Perfectly centered behind ring -->
           <div class="absolute w-[270px] h-[180px] sm:w-[450px] sm:h-[300px] lg:w-[660px] lg:h-[440px] bg-brand-text rounded-[32px] overflow-hidden shadow-[0_0_40px_rgba(0,0,0,0.5)] border border-white/10 z-10 flex flex-col justify-end">
-            <!-- Image Slides (Bright versions without darkening filters) -->
-            <div class="slide absolute inset-0 active transition-opacity duration-1000 z-0">
+            <!-- Image Slides (4 Way Directional) -->
+            <div class="slide">
               <img src="assets/images/hero1.JPG" class="w-full h-full object-cover">
             </div>
-            <div class="slide absolute inset-0 transition-opacity duration-1000 z-0">
+            <div class="slide">
               <img src="assets/images/hero2.JPG" class="w-full h-full object-cover">
             </div>
-            <div class="slide absolute inset-0 transition-opacity duration-1000 z-0">
+            <div class="slide">
               <img src="assets/images/hero3.JPG" class="w-full h-full object-cover">
             </div>
-            <div class="slide absolute inset-0 transition-opacity duration-1000 z-0">
+            <div class="slide">
               <img src="assets/images/hero4.JPG" class="w-full h-full object-cover">
             </div>
-            <div class="slide absolute inset-0 transition-opacity duration-1000 z-0">
+            <div class="slide">
               <img src="assets/images/hero5.JPG" class="w-full h-full object-cover">
             </div>
           </div>
@@ -567,20 +578,41 @@
   </footer>
 
   <script>
-    // Hero Slider Animation
+    // Hero Slider Animation (4 Directional Infinite Loop)
     let slideIndex = 0;
     const slides = document.querySelectorAll('.slide');
+    const directions = ['from-left', 'from-right', 'from-top', 'from-bottom'];
     
-    function autoSlider() {
-      if(slides.length > 1) {
-        slides[slideIndex].classList.remove('active');
-        slideIndex = (slideIndex + 1) % slides.length;
-        slides[slideIndex].classList.add('active');
+    if (slides.length > 0) {
+      slides.forEach((slide, i) => {
+        if (i === 0) {
+          slide.classList.add('active');
+        } else {
+          slide.classList.add(directions[i % 4]);
+        }
+      });
+      
+      if (slides.length > 1) {
+        setInterval(() => {
+          const currentSlide = slides[slideIndex];
+          const oldIndex = slideIndex;
+          const nextIndex = (slideIndex + 1) % slides.length;
+          const nextSlide = slides[nextIndex];
+
+          currentSlide.classList.remove('active');
+          currentSlide.classList.add('previous');
+          
+          nextSlide.classList.remove('from-left', 'from-right', 'from-top', 'from-bottom');
+          nextSlide.classList.add('active');
+
+          setTimeout(() => {
+            currentSlide.classList.remove('previous');
+            currentSlide.classList.add(directions[oldIndex % 4]);
+          }, 1200);
+
+          slideIndex = nextIndex;
+        }, 5000);
       }
-    }
-    
-    if (slides.length > 1) {
-      setInterval(autoSlider, 7000);
     }
   </script>
 
