@@ -396,7 +396,8 @@
                 <span>From the Principal's Desk</span>
                 <span class="lg:hidden text-[10px] bg-brand-primary/10 text-brand-primary px-3 py-1 rounded-full animate-pulse">Tap to read</span>
               </h4>
-              <h3 class="font-heading text-3xl md:text-4xl font-extrabold text-brand-text mb-6">Mrs. Salomi Indwar</h3>
+              <h3 class="font-heading text-3xl md:text-4xl font-extrabold text-brand-text mb-2">Mrs. Salomi Indwar</h3>
+              <p class="text-brand-primary font-semibold text-xs md:text-sm mb-6 uppercase tracking-widest leading-relaxed">Principal<br>Lower Assam School of Nursing</p>
               
               <div class="relative w-full">
                 <!-- Intro Paragraph (always visible) -->
@@ -424,15 +425,47 @@
           </div>
         </div>
 
-        <!-- Chairman's Desk -->
-        <div class="flex flex-col md:flex-row gap-8 items-start bg-white p-8 rounded-[32px] shadow-sm border border-brand-silver/50 hover-lift group cursor-pointer lg:w-4/5 ml-auto">
-          <div class="w-24 h-24 shrink-0 bg-brand-primary/10 rounded-2xl overflow-hidden shadow-inner group-hover:shadow-brand-primary/20 transition-all duration-300 relative">
-            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=300&q=80" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="Chairman">
-          </div>
-          <div>
-            <h4 class="text-brand-primary font-bold text-[10px] uppercase tracking-widest mb-2 font-heading">From the Chairman's Desk</h4>
-            <h3 class="font-heading text-xl font-extrabold text-brand-text mb-3">Shri. R. Prasad</h3>
-            <p class="text-brand-text/70 text-sm leading-relaxed italic border-l-[3px] border-brand-primary pl-4 group-hover:border-brand-secondary transition-colors duration-300">"Quality healthcare starts with quality education. We have invested in the finest infrastructure to ensure our students are global-ready upon graduation."</p>
+        <!-- Chairman's Message -->
+        <div class="relative bg-white rounded-[32px] overflow-hidden shadow-sm hover:shadow-xl hover:shadow-brand-primary/20 transition-all duration-500 group border border-brand-silver">
+          <div class="flex flex-col lg:flex-row-reverse">
+            <!-- Image -->
+            <div class="lg:w-[40%] relative overflow-hidden shrink-0">
+              <div class="absolute inset-0 bg-brand-primary/10 mix-blend-multiply z-10 group-hover:opacity-0 transition-opacity duration-700 pointer-events-none"></div>
+              <img src="assets/images/dr-itesh-bordoloi.jpeg" class="w-full h-full object-cover min-h-[350px] lg:min-h-[500px] group-hover:scale-105 transition-transform duration-[1000ms] ease-out" alt="Dr. I. Bordoloi, Chairman">
+            </div>
+            
+            <!-- Content -->
+            <div class="lg:w-[60%] p-8 md:p-12 lg:p-16 flex flex-col justify-center relative bg-white">
+              <h4 class="text-brand-primary font-bold text-[10px] md:text-xs uppercase tracking-widest mb-3 font-heading flex justify-between items-center">
+                <span>From the Chairman's Desk</span>
+                <span class="lg:hidden text-[10px] bg-brand-primary/10 text-brand-primary px-3 py-1 rounded-full animate-pulse">Tap to read</span>
+              </h4>
+              <h3 class="font-heading text-3xl md:text-4xl font-extrabold text-brand-text mb-2">Dr. I. Bordoloi</h3>
+              <p class="text-brand-primary font-semibold text-xs md:text-sm mb-6 uppercase tracking-widest leading-relaxed">Chief Managing Partner<br>Lower Assam Hospital & Research Centre</p>
+              
+              <div class="relative w-full">
+                <!-- Intro Paragraph (always visible) -->
+                <p class="text-brand-text/80 leading-relaxed text-base md:text-lg mb-4 font-medium">
+                  Nursing has always been considered as an important aspect of health care service. It has been observed that still there is high demand of qualified and skilled nurses around the globe. In recent time it has been seen that the demand for nurses has been increasing in the state, region and in the country and there is an emerging need to prepare and produce qualified and skillfull Nurses.
+                </p>
+                
+                <!-- Expanding Content (Hover reveal up to full height) -->
+                <div class="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-[grid-template-rows] duration-700 ease-in-out opacity-25 group-hover:opacity-100">
+                  <div class="overflow-hidden">
+                    <div class="pt-6 space-y-4 border-t border-brand-silver/50 mt-2 text-brand-text/75 text-sm md:text-base leading-relaxed">
+                      <p>The economic progress of a country in strongly linked with the availability and abundance of technical manpower, which is directly proportional to productivity and industrial growth.</p>
+                      <p>Modern Nursing is a dynamic, therapeutic and educative process in meeting the health need of individuals, the family and the community. Nursing is one of the health professional which function is conjunction with other health agencies in assisting individual, families and communities to achieve and maintain desirable standards of health.</p>
+                      <p>Indian Nursing Council recognized that basic nursing education in a formally recognized programme of study providing broad and sound foundation in the behavior. The council believes that this basic course in Nursing should prepare nurses for occupying first level position in the health care delivery system. The council recognized that nursing is a profession, which is influenced by advances in science and technology. It believes that skills in all aspects of communication are also essential for learning and for the practice of nursing.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Hover indicator -->
+                <div class="absolute -bottom-10 left-0 hidden lg:flex items-center gap-2 text-brand-primary text-[10px] font-bold uppercase tracking-widest transition-opacity duration-300 group-hover:opacity-0 pointer-events-none">
+                  <svg class="w-4 h-4 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg> Hover to Read Full Message
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
