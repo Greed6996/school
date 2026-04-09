@@ -77,7 +77,8 @@
       inset: 0; 
       visibility: hidden; 
       z-index: 0; 
-      transition: transform 1.2s cubic-bezier(0.8, 0, 0.2, 1), visibility 0s;
+      will-change: transform, visibility;
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), visibility 0s;
     }
     .slide.active { visibility: visible; z-index: 10; transform: translate(0, 0); }
     .slide.previous { visibility: visible; z-index: 5; transform: translate(0, 0); transition: none; }
@@ -146,8 +147,8 @@
     <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
       <!-- Logo -->
       <a href="#" class="flex items-center gap-3 group cursor-pointer">
-        <div class="w-10 h-10 bg-brand-primary rounded-lg flex items-center justify-center text-white shadow-md group-hover:bg-brand-secondary transition-colors duration-200">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
+        <div class="w-10 h-10 rounded-lg flex items-center justify-center shadow-md overflow-hidden bg-white">
+          <img src="assets/images/nslogo.png" alt="LASN Logo" class="w-full h-full object-contain p-0.5" />
         </div>
         <div>
           <h1 class="font-heading text-lg font-extrabold text-brand-primary leading-none tracking-tight">Lower Assam</h1>
@@ -212,11 +213,46 @@
       </nav>
 
       <!-- Mobile Toggle -->
-      <button class="lg:hidden text-brand-text cursor-pointer hover:text-brand-primary transition">
+      <button id="mobile-menu-toggle" class="lg:hidden text-brand-text cursor-pointer hover:text-brand-primary transition">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/></svg>
       </button>
     </div>
   </header>
+
+  <!-- ================= MOBILE MENU OVERLAY ================= -->
+  <div id="mobile-menu" class="fixed inset-0 bg-brand-bg/95 backdrop-blur-3xl z-[100] transform translate-x-full transition-transform duration-300 lg:hidden flex flex-col pointer-events-auto shadow-2xl">
+    <div class="p-6 flex justify-between items-center border-b border-brand-silver/30">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-lg flex items-center justify-center shadow-md overflow-hidden bg-white">
+          <img src="assets/images/nslogo.png" alt="LASN Logo" class="w-full h-full object-contain p-0.5" />
+        </div>
+        <h1 class="font-heading text-xl font-extrabold text-brand-primary leading-none tracking-tight">LASN</h1>
+      </div>
+      <button id="mobile-menu-close" class="text-brand-text hover:text-brand-primary bg-brand-primary/10 p-2 rounded-full cursor-pointer">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="flex-1 overflow-y-auto p-6 flex flex-col gap-6 text-[13px] font-bold uppercase tracking-widest pb-12">
+      <a href="#" class="mobile-nav-link text-brand-text px-4 py-3 bg-brand-primary/5 rounded-xl border border-brand-primary/10">Home</a>
+      <div class="flex flex-col gap-2">
+        <span class="text-brand-primary/60 text-[10px] px-4 font-black">About Institution</span>
+        <a href="#about" class="mobile-nav-link text-brand-text px-4 py-3 hover:bg-brand-primary/5 rounded-xl transition">Our School & Hospital</a>
+        <a href="#desk" class="mobile-nav-link text-brand-text px-4 py-3 hover:bg-brand-primary/5 rounded-xl transition">Leadership Desk</a>
+      </div>
+      <div class="flex flex-col gap-2">
+        <span class="text-brand-primary/60 text-[10px] px-4 font-black">Admissions & Academics</span>
+        <a href="#courses" class="mobile-nav-link text-brand-text px-4 py-3 hover:bg-brand-primary/5 rounded-xl transition">GNM Course Details</a>
+        <a href="#admission" class="mobile-nav-link text-brand-text px-4 py-3 hover:bg-brand-primary/5 rounded-xl transition">Registration Guidelines</a>
+      </div>
+      <div class="flex flex-col gap-2">
+        <span class="text-brand-primary/60 text-[10px] px-4 font-black">Campus</span>
+        <a href="#facilities" class="mobile-nav-link text-brand-text px-4 py-3 hover:bg-brand-primary/5 rounded-xl transition">Advanced Facilities</a>
+      </div>
+      <div class="mt-4">
+        <a href="#admission" class="mobile-nav-link flex justify-center bg-brand-primary text-white px-6 py-4 rounded-xl shadow-lg hover:shadow-brand-primary/40 text-center transition-all">Apply Now 2026</a>
+      </div>
+    </div>
+  </div>
 
   <!-- ================= HERO CAROUSEL & ORBITING ICONS ================= -->
   <section class="relative bg-brand-footer overflow-hidden min-h-screen flex items-center justify-center pt-24 pb-12">
@@ -247,7 +283,7 @@
       <div class="w-full lg:w-1/2 flex justify-center items-center relative h-[400px] sm:h-[600px] lg:h-[850px]">
         
         <!-- Orbit System Container -->
-        <div class="relative flex items-center justify-center w-[360px] h-[360px] sm:w-[580px] sm:h-[580px] lg:w-[820px] lg:h-[820px]">
+        <div class="relative flex items-center justify-center w-[300px] h-[300px] sm:w-[580px] sm:h-[580px] lg:w-[820px] lg:h-[820px] max-w-full">
           
           <!-- Rotating Orbit Ring (z-30 to be in front) -->
           <div class="absolute inset-0 border border-brand-secondary/30 rounded-full animate-spin-slow z-30 pointer-events-none">
@@ -305,22 +341,22 @@
           </div>
 
           <!-- Central Card (Carousel ONLY) - Perfectly centered behind ring -->
-          <div class="absolute w-[270px] h-[180px] sm:w-[450px] sm:h-[300px] lg:w-[660px] lg:h-[440px] bg-brand-text rounded-[32px] overflow-hidden shadow-[0_0_40px_rgba(0,0,0,0.5)] border border-white/10 z-10 flex flex-col justify-end">
+          <div class="absolute w-[220px] h-[150px] sm:w-[450px] sm:h-[300px] lg:w-[660px] lg:h-[440px] bg-brand-text rounded-[32px] overflow-hidden shadow-[0_0_40px_rgba(0,0,0,0.5)] border border-white/10 z-10 flex flex-col justify-end">
             <!-- Image Slides (4 Way Directional) -->
             <div class="slide">
-              <img src="assets/images/hero1.JPG" class="w-full h-full object-cover">
+              <img src="assets/images/hero1.JPG" fetchpriority="high" aria-hidden="true" class="w-full h-full object-cover">
             </div>
             <div class="slide">
-              <img src="assets/images/hero2.JPG" class="w-full h-full object-cover">
+              <img src="assets/images/hero2.JPG" loading="lazy" aria-hidden="true" class="w-full h-full object-cover">
             </div>
             <div class="slide">
-              <img src="assets/images/hero3.JPG" class="w-full h-full object-cover">
+              <img src="assets/images/hero3.JPG" loading="lazy" aria-hidden="true" class="w-full h-full object-cover">
             </div>
             <div class="slide">
-              <img src="assets/images/hero4.JPG" class="w-full h-full object-cover">
+              <img src="assets/images/hero4.JPG" loading="lazy" aria-hidden="true" class="w-full h-full object-cover">
             </div>
             <div class="slide">
-              <img src="assets/images/hero5.JPG" class="w-full h-full object-cover">
+              <img src="assets/images/hero5.JPG" loading="lazy" aria-hidden="true" class="w-full h-full object-cover">
             </div>
           </div>
           
@@ -387,7 +423,7 @@
             <!-- Image -->
             <div class="lg:w-[40%] relative overflow-hidden shrink-0">
               <div class="absolute inset-0 bg-brand-primary/10 mix-blend-multiply z-10 group-hover:opacity-0 transition-opacity duration-700 pointer-events-none"></div>
-              <img src="assets/images/Dr_Sarah_K_Baruah.JPG" class="w-full h-full object-cover min-h-[350px] lg:min-h-[500px] group-hover:scale-105 transition-transform duration-[1000ms] ease-out" alt="Mrs. Salomi Indwar, Principal">
+              <img src="assets/images/Mrs-Salomi-Indwar.jpeg" class="w-full h-full object-cover min-h-[350px] lg:min-h-[500px] group-hover:scale-105 transition-transform duration-[1000ms] ease-out" alt="Mrs. Salomi Indwar, Principal">
             </div>
             
             <!-- Content -->
@@ -520,54 +556,71 @@
       <div class="absolute right-0 top-0 bottom-0 w-16 md:w-24 bg-gradient-to-l from-brand-footer to-transparent z-20 pointer-events-none"></div>
       
       <div class="animate-scroll">
-        <!-- Add group and overlay to images -->
+        <!-- Infrastructure Images -->
         <div class="px-4 group cursor-pointer">
           <div class="relative overflow-hidden rounded-[24px]">
-            <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=500&q=80" class="w-[350px] md:w-[450px] h-[250px] md:h-[300px] object-cover group-hover:scale-105 transition-transform duration-700" alt="Lab">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-              <span class="text-white font-heading font-bold text-xl tracking-tight translate-y-4 group-hover:translate-y-0 transition-transform duration-300">Nursing Simulation Lab</span>
-            </div>
+            <img src="assets/images/DSC_3666.JPG" class="w-[350px] md:w-[450px] h-[250px] md:h-[300px] object-cover group-hover:scale-105 transition-transform duration-700" alt="Facility">
           </div>
         </div>
         <div class="px-4 group cursor-pointer">
           <div class="relative overflow-hidden rounded-[24px]">
-            <img src="https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&w=500&q=80" class="w-[350px] md:w-[450px] h-[250px] md:h-[300px] object-cover group-hover:scale-105 transition-transform duration-700" alt="Clinic">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-              <span class="text-white font-heading font-bold text-xl tracking-tight translate-y-4 group-hover:translate-y-0 transition-transform duration-300">Modern Clinical Wards</span>
-            </div>
+            <img src="assets/images/DSC_9431.JPG" class="w-[350px] md:w-[450px] h-[250px] md:h-[300px] object-cover group-hover:scale-105 transition-transform duration-700" alt="Facility">
           </div>
         </div>
         <div class="px-4 group cursor-pointer">
           <div class="relative overflow-hidden rounded-[24px]">
-            <img src="https://images.unsplash.com/photo-1581056771107-24ca5f033842?auto=format&fit=crop&w=500&q=80" class="w-[350px] md:w-[450px] h-[250px] md:h-[300px] object-cover group-hover:scale-105 transition-transform duration-700" alt="Library">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-              <span class="text-white font-heading font-bold text-xl tracking-tight translate-y-4 group-hover:translate-y-0 transition-transform duration-300">Extensive Library</span>
-            </div>
+            <img src="assets/images/DSC_9432.JPG" class="w-[350px] md:w-[450px] h-[250px] md:h-[300px] object-cover group-hover:scale-105 transition-transform duration-700" alt="Facility">
           </div>
         </div>
         <div class="px-4 group cursor-pointer">
           <div class="relative overflow-hidden rounded-[24px]">
-            <img src="https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?auto=format&fit=crop&w=500&q=80" class="w-[350px] md:w-[450px] h-[250px] md:h-[300px] object-cover group-hover:scale-105 transition-transform duration-700" alt="Campus">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-              <span class="text-white font-heading font-bold text-xl tracking-tight translate-y-4 group-hover:translate-y-0 transition-transform duration-300">Student Campus</span>
-            </div>
+            <img src="assets/images/DSC_9472.JPG" class="w-[350px] md:w-[450px] h-[250px] md:h-[300px] object-cover group-hover:scale-105 transition-transform duration-700" alt="Facility">
+          </div>
+        </div>
+        <div class="px-4 group cursor-pointer">
+          <div class="relative overflow-hidden rounded-[24px]">
+            <img src="assets/images/DSC_9482.JPG" class="w-[350px] md:w-[450px] h-[250px] md:h-[300px] object-cover group-hover:scale-105 transition-transform duration-700" alt="Facility">
+          </div>
+        </div>
+        <div class="px-4 group cursor-pointer">
+          <div class="relative overflow-hidden rounded-[24px]">
+            <img src="assets/images/DSC_9511.JPG" class="w-[350px] md:w-[450px] h-[250px] md:h-[300px] object-cover group-hover:scale-105 transition-transform duration-700" alt="Facility">
+          </div>
+        </div>
+        <div class="px-4 group cursor-pointer">
+          <div class="relative overflow-hidden rounded-[24px]">
+            <img src="assets/images/DSC_9642.JPG" class="w-[350px] md:w-[450px] h-[250px] md:h-[300px] object-cover group-hover:scale-105 transition-transform duration-700" alt="Facility">
+          </div>
+        </div>
+        <div class="px-4 group cursor-pointer">
+          <div class="relative overflow-hidden rounded-[24px]">
+            <img src="assets/images/DSC_9643.JPG" class="w-[350px] md:w-[450px] h-[250px] md:h-[300px] object-cover group-hover:scale-105 transition-transform duration-700" alt="Facility">
+          </div>
+        </div>
+        <div class="px-4 group cursor-pointer">
+          <div class="relative overflow-hidden rounded-[24px]">
+            <img src="assets/images/DSC_9657.JPG" class="w-[350px] md:w-[450px] h-[250px] md:h-[300px] object-cover group-hover:scale-105 transition-transform duration-700" alt="Facility">
           </div>
         </div>
         <!-- Duplicates for seamless loop -->
         <div class="px-4 group cursor-pointer">
           <div class="relative overflow-hidden rounded-[24px]">
-            <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=500&q=80" class="w-[350px] md:w-[450px] h-[250px] md:h-[300px] object-cover group-hover:scale-105 transition-transform duration-700" alt="Lab-loop">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-              <span class="text-white font-heading font-bold text-xl tracking-tight translate-y-4 group-hover:translate-y-0 transition-transform duration-300">Nursing Simulation Lab</span>
-            </div>
+            <img src="assets/images/DSC_3666.JPG" class="w-[350px] md:w-[450px] h-[250px] md:h-[300px] object-cover group-hover:scale-105 transition-transform duration-700" alt="Facility-loop">
           </div>
         </div>
         <div class="px-4 group cursor-pointer">
           <div class="relative overflow-hidden rounded-[24px]">
-            <img src="https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&w=500&q=80" class="w-[350px] md:w-[450px] h-[250px] md:h-[300px] object-cover group-hover:scale-105 transition-transform duration-700" alt="Clinic-loop">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-              <span class="text-white font-heading font-bold text-xl tracking-tight translate-y-4 group-hover:translate-y-0 transition-transform duration-300">Modern Clinical Wards</span>
-            </div>
+            <img src="assets/images/DSC_9431.JPG" class="w-[350px] md:w-[450px] h-[250px] md:h-[300px] object-cover group-hover:scale-105 transition-transform duration-700" alt="Facility-loop">
+          </div>
+        </div>
+        <div class="px-4 group cursor-pointer">
+          <div class="relative overflow-hidden rounded-[24px]">
+            <img src="assets/images/DSC_9432.JPG" class="w-[350px] md:w-[450px] h-[250px] md:h-[300px] object-cover group-hover:scale-105 transition-transform duration-700" alt="Facility-loop">
+          </div>
+        </div>
+        <div class="px-4 group cursor-pointer">
+          <div class="relative overflow-hidden rounded-[24px]">
+            <img src="assets/images/DSC_9472.JPG" class="w-[350px] md:w-[450px] h-[250px] md:h-[300px] object-cover group-hover:scale-105 transition-transform duration-700" alt="Facility-loop">
           </div>
         </div>
       </div>
@@ -580,7 +633,9 @@
       <!-- Logo & Address -->
       <div class="col-span-1 md:col-span-1">
         <div class="flex items-center gap-3 mb-8 cursor-pointer group">
-          <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center text-brand-primary font-heading font-extrabold text-2xl shadow-lg group-hover:bg-brand-secondary group-hover:text-white transition-colors duration-300">L</div>
+          <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center text-brand-primary font-heading font-extrabold text-2xl shadow-lg group-hover:opacity-80 transition-opacity duration-300 overflow-hidden">
+            <img src="assets/images/nslogo.png" alt="LASN Logo" class="w-full h-full object-contain p-1" />
+          </div>
           <div>
             <h1 class="font-heading text-lg font-extrabold text-white leading-none tracking-tight">LASN</h1>
             <p class="text-[9px] font-bold uppercase tracking-widest text-brand-bg/60 mt-1">Bongaigaon City</p>
@@ -677,11 +732,33 @@
           setTimeout(() => {
             currentSlide.classList.remove('previous');
             currentSlide.classList.add(directions[oldIndex % 4]);
-          }, 1200);
+          }, 400);
 
           slideIndex = nextIndex;
-        }, 5000);
+        }, 1500);
       }
+    }
+
+    // Mobile Menu Toggle Logic
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const mobileMenuClose = document.getElementById('mobile-menu-close');
+    const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+    if (mobileMenu && mobileMenuToggle && mobileMenuClose) {
+      mobileMenuToggle.addEventListener('click', () => {
+        mobileMenu.classList.remove('translate-x-full');
+      });
+      
+      mobileMenuClose.addEventListener('click', () => {
+        mobileMenu.classList.add('translate-x-full');
+      });
+      
+      mobileNavLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.add('translate-x-full');
+        });
+      });
     }
   </script>
 
